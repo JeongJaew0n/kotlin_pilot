@@ -1,0 +1,22 @@
+version: '3.8' # Docker Compose 파일의 버전 (3.8 은 LST 최신 버전)
+
+services: # 여기에 정의된 각각의 서비스(컨테이너)들을 구성.
+  mysql: # 서비스 이름. 이 이름은 내부 네트워크에서 호스트명처럼 사용 가능.
+    image: mysql:8.0 # 사용할 Docker 이미지
+    container_name: my-mysql # 컨테이너 이름 (docker ps 명령어로 확인 가능)
+    restart: no # 컨테이너 재시작 정책
+    # - "no": 자동 재시작 안 함
+    # - "always": 항상 재시작
+    # - "on-failure": 실패할 때만 재시작
+    # - "unless-stopped": 사용자가 직접 중지하지 않는 이상 재시작
+    environment: # 컨테이너 내부에 환경변수를 설정
+      MYSQL_ROOT_PASSWORD: my-secret-pw # MySQL root 계정의 비밀번호
+    ports: # 호스트와 컨테이너 간의 포트 매핑
+      - "3306:3306" # 호스트의 3306 포트를 컨테이너의 3306 포트에 매핑
+      # 왼쪽: 외부에서 접근하는 포트 / 오른쪽: 컨테이너 내부 포트
+    volumes: # 호스트와 컨테이너 간의 데이터 공유 (데이터 영속성, persistence)
+      - mysql-data:/var/lib/mysql # 호스트의 mysql-data 볼륨을 컨테이너의 /var/lib/mysql 경로에 연결
+
+volumes: # 외부에 선언된 볼륨 목록
+  mysql-data: # 이름이 'mysql-data'인 Docker 볼륨을 생성함.
+  # 따로 경로를 지정하지 않으면 Docker가 자동으로 저장 위치를 관리

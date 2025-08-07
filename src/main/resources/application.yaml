@@ -1,0 +1,43 @@
+ktor:
+    application:
+      modules:
+        - org.ktor_lecture.MainKt.module
+    deployment:
+      port: 8080
+
+database:
+  driverClassName : "com.mysql.cj.jdbc.Driver"
+  url : "jdbc:mysql://localhost:3306/app?useUnicode=true&characterEncoding=utf8&useSSL=false"
+  password : ""
+  username: "root"
+  poolSize : 10
+
+security:
+  paseto:
+    issuer: "time-capsule-alpha"
+    privateKey: "MC4CAQAwBQYDK2VwBCIEIBJbj0ZFnNxYANH/fpzO5+LQGE2Djiv3wysZM93OWPNq"
+    publicKey: "MCowBQYDK2VwAyEAlZyrtYwZn00A91LbCzjX4YN56AvAqa7AuETEfNPhlDY="
+  pbfdk2:
+    algorithm: "PBKDF2WithHmacSHA256"
+    iterations: "120000"
+    keyLength: "256"
+    saltLength: "16"
+  timebase:
+    masterKey: cTjzOEZNpXees+RZMGzvDQmnIPlURWEn+brd9yi0Qro=
+
+storage:
+  bucket: "demo-bucket"
+  minio:
+    endpoint: "http://localhost:9000"
+    accessKey: "minio_user"
+    secretKey: "minio_password"
+
+email:
+  provider: "jakata"
+  fromEmail: "TODO"
+  fromName: "noreply"
+  jakata:
+    host: "smtp.gmail.com"
+    port: "587"
+    username : "TODO"
+    password: "TODO"
