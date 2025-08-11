@@ -17,7 +17,7 @@ fun main() {
     println(indent)
     println(indent[2])
 
-    val k = number1 >= 10L ? "10 이상" : "10 미만"
+//    val k = number1 >= 10L ? "10 이상" : "10 미만" // 코틀린은 삼항 연산자를 지원하지 않음
     val y = if (number1 >= 10L) "10 이상" else "10 미만"
 }
 
